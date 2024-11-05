@@ -8,6 +8,18 @@ pipeline {
           git branch: 'main', url: 'https://github.com/kalkashi/lbg-vat-calculator.git'
         }
     }
+    stage('Install'){
+        steps{
+            //Install the reactjs deps
+            sh "npm install"
+        }
+    }
+    stage('Test'){
+        steps{
+            //Run the reactjs tests
+            sh "npm test"
+        }
+    }
     stage('SonarQube Analysis') {
       environment {
         scannerHome = tool 'sonarqube'
